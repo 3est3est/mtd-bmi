@@ -31,8 +31,8 @@ export default function LoginPage() {
         setError(res.error);
       } else {
         console.log("SignIn success, redirecting...");
-        router.push("/");
-        router.refresh();
+        // Force hard navigation to ensure session is picked up
+        window.location.href = "/";
       }
     } catch (err) {
       console.error("Login exception:", err);
