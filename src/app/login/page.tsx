@@ -18,19 +18,24 @@ export default function LoginPage() {
     setError("");
 
     try {
+      console.log("Attempting to sign in...", { email });
       const res = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
+      console.log("SignIn result:", res);
 
       if (res?.error) {
+        console.error("SignIn error:", res.error);
         setError(res.error);
       } else {
+        console.log("SignIn success, redirecting...");
         router.push("/");
         router.refresh();
       }
     } catch (err) {
+      console.error("Login exception:", err);
       setError("An error occurred during login");
     } finally {
       setLoading(false);
