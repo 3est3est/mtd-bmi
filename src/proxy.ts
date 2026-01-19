@@ -8,8 +8,10 @@ export async function proxy(req: NextRequest) {
 
   // Allow the requests if the following is true...
   // 1) It's a request for next-auth session & provider fetching
-  // 2) the token exists
-  if (pathname.includes("/api/auth") || token) {
+  // 2) It's a public route (login, register)
+  // 3) the token exists
+  const publicRoutes = ["/login", "/register", "/api/register"];
+  if (pathname.includes("/api/auth") || publicRoutes.some(route => pathname === route || pathname.startsWith(route)) || token) {
     return NextResponse.next();
   }
 
