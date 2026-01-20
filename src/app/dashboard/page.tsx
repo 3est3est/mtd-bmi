@@ -61,8 +61,9 @@ export default function DashboardPage() {
             <h2 className="text-xl font-semibold text-blue mb-4">Calculate BMI</h2>
             <form onSubmit={calculateBMI} className="space-y-4">
               <div>
-                <label className="block text-subtext1 mb-1">Weight (kg)</label>
+                <label htmlFor="weight" className="block text-subtext1 mb-1">Weight (kg)</label>
                 <input
+                  id="weight"
                   type="number"
                   step="0.1"
                   className="input-field"
@@ -73,8 +74,9 @@ export default function DashboardPage() {
                 />
               </div>
               <div>
-                <label className="block text-subtext1 mb-1">Height (cm)</label>
+                <label htmlFor="height" className="block text-subtext1 mb-1">Height (cm)</label>
                 <input
+                  id="height"
                   type="number"
                   step="0.1"
                   className="input-field"
@@ -108,11 +110,11 @@ export default function DashboardPage() {
                 >
                   {loading ? "Saving..." : "Save Result"}
                 </button>
-                {message && <p className="mt-2 text-sm text-subtext1">{message}</p>}
               </>
             ) : (
               <p className="text-subtext0 italic">Enter your details to calculate BMI</p>
             )}
+            {message && <p className="mt-4 text-sm text-subtext1">{message}</p>}
           </div>
         </div>
       </div>

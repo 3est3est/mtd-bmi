@@ -38,13 +38,15 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-5xl font-extrabold text-mauve mb-8">BMI Tracker</h1>
       <div className="card w-full max-w-md">
-        <h1 className="text-3xl font-bold text-mauve mb-6 text-center">Register</h1>
+        <h2 className="text-3xl font-bold text-blue mb-6 text-center">Register</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-subtext1 mb-1">Name</label>
+            <label htmlFor="name" className="block text-subtext1 mb-1">Name</label>
             <input
+              id="name"
               type="text"
               className="input-field"
               value={name}
@@ -53,8 +55,9 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="block text-subtext1 mb-1">Email</label>
+            <label htmlFor="email" className="block text-subtext1 mb-1">Email</label>
             <input
+              id="email"
               type="email"
               className="input-field"
               value={email}
@@ -63,8 +66,9 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="block text-subtext1 mb-1">Password</label>
+            <label htmlFor="password" className="block text-subtext1 mb-1">Password</label>
             <input
+              id="password"
               type="password"
               className="input-field"
               value={password}
