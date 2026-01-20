@@ -51,70 +51,91 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-base">
+    <div className="min-h-screen bg-gradient-mocha">
       <Navbar />
-      <div className="p-8 max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-mauve mb-8">Dashboard</h1>
+      <div className="p-8 max-w-5xl mx-auto">
+        <header className="mb-12">
+          <h1 className="text-4xl font-black text-gradient-mauve mb-2">Health Dashboard</h1>
+          <p className="text-subtext0">Track and monitor your body mass index progress.</p>
+        </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="card">
-            <h2 className="text-xl font-semibold text-blue mb-4">Calculate BMI</h2>
-            <form onSubmit={calculateBMI} className="space-y-4">
-              <div>
-                <label htmlFor="weight" className="block text-subtext1 mb-1">Weight (kg)</label>
-                <input
-                  id="weight"
-                  type="number"
-                  step="0.1"
-                  className="input-field"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  placeholder="e.g. 70"
-                  required
-                />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-5">
+            <div className="card h-full">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue">⚖️</div>
+                <h2 className="text-2xl font-bold text-text">Calculate BMI</h2>
               </div>
-              <div>
-                <label htmlFor="height" className="block text-subtext1 mb-1">Height (cm)</label>
-                <input
-                  id="height"
-                  type="number"
-                  step="0.1"
-                  className="input-field"
-                  value={height}
-                  onChange={(e) => setHeight(e.target.value)}
-                  placeholder="e.g. 175"
-                  required
-                />
-              </div>
-              <button type="submit" className="btn-primary w-full">
-                Calculate
-              </button>
-            </form>
+              <form onSubmit={calculateBMI} className="space-y-6">
+                <div>
+                  <label htmlFor="weight" className="block text-subtext1 font-medium mb-2">Weight (kg)</label>
+                  <input
+                    id="weight"
+                    type="number"
+                    step="0.1"
+                    className="input-field"
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                    placeholder="e.g. 70"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="height" className="block text-subtext1 font-medium mb-2">Height (cm)</label>
+                  <input
+                    id="height"
+                    type="number"
+                    step="0.1"
+                    className="input-field"
+                    value={height}
+                    onChange={(e) => setHeight(e.target.value)}
+                    placeholder="e.g. 175"
+                    required
+                  />
+                </div>
+                <button type="submit" className="btn-primary w-full py-4 text-lg">
+                  Calculate Now
+                </button>
+              </form>
+            </div>
           </div>
 
-          <div className="card flex flex-col items-center justify-center text-center">
-            {bmi !== null ? (
-              <>
-                <h2 className="text-xl font-semibold text-blue mb-2">Your Result</h2>
-                <div className="text-6xl font-bold text-mauve my-4">{bmi}</div>
-                <div className={`text-2xl font-semibold mb-6 ${
-                  status === "Normal" ? "text-green" : 
-                  status === "Underweight" ? "text-yellow" : "text-red"
-                }`}>
-                  {status}
+          <div className="lg:col-span-7">
+            <div className="card h-full flex flex-col items-center justify-center text-center relative overflow-hidden">
+              {bmi !== null ? (
+                <>
+                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-mauve via-blue to-teal" />
+                  <h2 className="text-xl font-bold text-subtext1 mb-4">Your BMI Score</h2>
+                  <div className="text-8xl font-black text-gradient-mauve mb-4 tabular-nums">{bmi}</div>
+                  <div className={`px-6 py-2 rounded-full text-xl font-bold mb-8 shadow-sm ${
+                    status === "Normal" ? "bg-green/10 text-green" : 
+                    status === "Underweight" ? "bg-yellow/10 text-yellow" : "bg-red/10 text-red"
+                  }`}>
+                    {status}
+                  </div>
+                  <div className="w-full max-w-sm">
+                    <button
+                      onClick={handleSave}
+                      disabled={loading}
+                      className={`btn-primary w-full py-3 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      style={{ background: 'linear-gradient(135deg, var(--color-green) 0%, var(--color-teal) 100%)', color: 'var(--color-base)' }}
+                    >
+                      {loading ? "Saving Result..." : "Save to History"}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="flex flex-col items-center gap-4 py-12">
+                  <div className="text-6xl grayscale opacity-50">📏</div>
+                  <p className="text-subtext0 text-lg italic max-w-xs">Enter your details on the left to see your BMI result here.</p>
                 </div>
-                <button
-                  onClick={handleSave}
-                  disabled={loading}
-                  className="btn-primary bg-green hover:bg-teal text-base w-full"
-                >
-                  {loading ? "Saving..." : "Save Result"}
-                </button>
-              </>
-            ) : (
-              <p className="text-subtext0 italic">Enter your details to calculate BMI</p>
-            )}
-            {message && <p className="mt-4 text-sm text-subtext1">{message}</p>}
+              )}
+              {message && (
+                <div className="mt-6 px-4 py-2 rounded-lg bg-surface0/50 text-mauve font-medium animate-bounce">
+                  {message}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

@@ -53,13 +53,25 @@ body {
 }
 
 @layer components {
+  .bg-gradient-mocha {
+    background: linear-gradient(135deg, var(--color-base) 0%, var(--color-mantle) 100%);
+  }
+  .bg-gradient-mauve {
+    background: linear-gradient(135deg, var(--color-mauve) 0%, var(--color-blue) 100%);
+  }
+  .text-gradient-mauve {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-mauve to-blue;
+  }
   .btn-primary {
-    @apply bg-mauve text-base font-bold py-2 px-4 rounded hover:bg-pink transition-colors;
+    @apply bg-gradient-to-r from-mauve to-blue text-base font-bold py-2 px-6 rounded-xl shadow-lg hover:shadow-mauve/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200;
   }
   .input-field {
-    @apply bg-surface0 text-text border border-surface1 rounded py-2 px-3 focus:outline-none focus:border-mauve w-full;
+    @apply bg-surface0/50 text-text border border-surface1 rounded-xl py-2.5 px-4 focus:outline-none focus:border-mauve focus:ring-2 focus:ring-mauve/20 w-full transition-all duration-200;
   }
   .card {
-    @apply bg-mantle p-6 rounded-lg shadow-xl border border-surface0;
+    @apply bg-mantle/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-surface1/50 hover:border-mauve/30 transition-all duration-300;
+  }
+  .glass {
+    @apply bg-surface0/30 backdrop-blur-lg border border-white/10;
   }
 }

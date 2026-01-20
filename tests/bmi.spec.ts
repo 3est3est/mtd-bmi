@@ -56,10 +56,10 @@ test.describe('BMI Application E2E Tests', () => {
     await page.getByLabel('Weight (kg)').fill('70');
     await page.getByLabel('Height (cm)').fill('175');
     
-    await page.click('button:has-text("Calculate")');
+    await page.click('button:has-text("Calculate Now")');
     
     // Verify Result
-    await expect(page.locator('text=Your Result')).toBeVisible();
+    await expect(page.locator('text=Your BMI Score')).toBeVisible();
     await expect(page.locator('text=22.86')).toBeVisible();
   });
 
@@ -75,13 +75,13 @@ test.describe('BMI Application E2E Tests', () => {
     await page.goto('/dashboard');
     await page.getByLabel('Weight (kg)').fill('80');
     await page.getByLabel('Height (cm)').fill('180');
-    await page.click('button:has-text("Calculate")');
+    await page.click('button:has-text("Calculate Now")');
     
     // Wait for result to appear
     await expect(page.locator('text=24.69')).toBeVisible();
     
     // Save
-    await page.click('button:has-text("Save Result")');
+    await page.click('button:has-text("Save to History")');
     await expect(page.getByText('Saved successfully!')).toBeVisible();
     
     // Go to History
@@ -107,6 +107,6 @@ test.describe('BMI Application E2E Tests', () => {
     // Check for period buttons
     await expect(page.getByRole('button', { name: 'Weekly' })).toBeVisible();
     // Check for summary stats section
-    await expect(page.getByText('Summary Stats')).toBeVisible();
+    await expect(page.getByText('Summary Metrics')).toBeVisible();
   });
 });
