@@ -55,6 +55,7 @@ export default function RegisterPage() {
               className="input-field"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder="Your Name"
               required
             />
           </div>
@@ -66,6 +67,7 @@ export default function RegisterPage() {
               className="input-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
               required
             />
           </div>
@@ -77,6 +79,7 @@ export default function RegisterPage() {
               className="input-field"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
               required
             />
           </div>
@@ -95,6 +98,22 @@ export default function RegisterPage() {
             Login
           </Link>
         </p>
+      </div>
+
+      {/* Demo Credentials Under Card */}
+      <div className="mt-8 relative z-10 flex flex-col items-center gap-2 px-6 py-3 rounded-2xl bg-surface0/30 border border-surface1/30 backdrop-blur-sm animate-fade-in">
+        <p className="text-subtext1 text-[10px] font-bold uppercase tracking-[0.2em]">Demo Access</p>
+        <div className="flex gap-4 text-xs">
+          <div className="flex gap-1.5">
+            <span className="text-subtext0">Email:</span>
+            <span className="text-mauve font-mono font-bold">test@example.com</span>
+          </div>
+          <div className="w-px h-3 bg-surface1/50 self-center" />
+          <div className="flex gap-1.5">
+            <span className="text-subtext0">Pass:</span>
+            <span className="text-blue font-mono font-bold">password123</span>
+          </div>
+        </div>
       </div>
     </div>
   );
