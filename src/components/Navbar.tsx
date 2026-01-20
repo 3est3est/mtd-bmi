@@ -26,18 +26,27 @@ export default function Navbar() {
         </div>
       </div>
       <div className="flex items-center gap-6">
-        {session?.user && (
+        {session?.user ? (
           <>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-mauve to-blue flex items-center justify-center text-base font-bold text-white uppercase">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-mauve to-blue flex items-center justify-center text-base font-bold text-white uppercase shadow-sm">
                 {session.user.name?.[0] || session.user.email?.[0]}
               </div>
-              <span className="text-subtext1 font-medium">
+              <span className="text-subtext1 font-medium hidden sm:inline">
                 {session.user.name || session.user.email?.split('@')[0]}
               </span>
             </div>
             <LogoutButton />
           </>
+        ) : (
+          <div className="flex items-center gap-4">
+            <Link href="/login" className="text-subtext1 hover:text-text font-bold transition-colors">
+              Login
+            </Link>
+            <Link href="/register" className="btn-primary py-2 px-6 rounded-xl text-sm">
+              Sign Up
+            </Link>
+          </div>
         )}
       </div>
     </nav>

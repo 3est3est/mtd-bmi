@@ -16,7 +16,7 @@ export async function proxy(req: NextRequest) {
   }
 
   // Redirect them to login if they don't have token and are requesting a protected route
-  const protectedRoutes = ["/", "/dashboard", "/history", "/reports"];
+  const protectedRoutes = ["/dashboard", "/history", "/reports"];
   if (!token && protectedRoutes.some(route => pathname === route || pathname.startsWith(route + "/"))) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
